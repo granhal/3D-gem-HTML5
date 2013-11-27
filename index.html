@@ -1,0 +1,277 @@
+
+<!-- Website designed and developed by www.cantelymedia.com Alberto Gutiérrez Romero @granhal (twitter) -->
+<!-- Web diseñada y desarrollada por www.cantelymedia.com Alberto Gutiérrez Romero @granhal (twitter) -->
+<!-- ######################################################## -->
+<!-- embrion.es videogame, Embrion is a project of <a href="http://brainside.es">Brainside Studio.</a> -->
+<!-- Todos los derechos reservados, 2013. -->
+<!-- All rights reserved 2013. -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GEM</title>
+		<meta charset="utf-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="embrion, videogame, videojuego, brainside, sevilla, españa, spain, horror, terror, game, juego, unity" />
+	<meta name="description" content="El equipo “Brainside” formado por desarrolladores iniciados en el proyecto “Aula de Videojuegos” de la Universidad de Sevilla, trabaja desde hace tiempo en la creación de “Embrion”
+Os presentamos un videojuego con temática “Survival Horror” de corte clásico, ambientado en un Universo Scifi con el estilo de antaño (Blade Runner, Alien, Dune).
+Pretendemos recuperar la fuerza de este género, ofreciendo al jugador inmersión total, gracias al motor Unity 3D, tecnología de última generación en creación de Videojuegos. Con un aspecto visual muy cuidado, mecánicas innovadoras y un guión a la altura de series míticas como “Lost” o de supervivencia como “The Walking Dead”." />
+	<meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=0" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/ui.css" rel="stylesheet" media="screen">
+
+		<link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/three.min.js"></script>
+		<script src="js/Detector.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
+
+		<link rel="shortcut icon" href="favicon.ico" />
+	</head>
+	<body>
+		<div id="menuSuperior" class="text-left">
+			<img src="logo.png" width="30%" ><br><br>
+				<div style="margin-left:45px">
+					<button class="btn btn-inverse" id="verControles">More info</button>
+					<button class="btn btn-inverse" id="verRadar">Galery</button>
+				 	<button class="btn btn-inverse" id="verCreditos">Credits</button>
+				 	<button class="btn btn-inverse" id="verSalirUniverso">Embrion.es</button>
+			 	</div>
+		</div>
+
+		<div id="controles" style="font-size:9px;">
+			<button class="close" id="cerrarControles">&times;</button>
+			<span style="font-size:22px">More information</span><br> 
+			Gem is a robot with artificial intelligence.<br><br>
+			It is built with plastic, fiberglass, wood and iron.<br>
+			She will help Hans in the game Embrion.
+		</div>
+		<div id="creditos" style="font-size:9px;">
+			<button class="close" id="cerrarCreditos" >&times;</button>
+			<span style="font-size:16px">Credits</span><br>
+			The logos and trademarks used are properties of their respective owners.
+			All content of this site and its different directories are protected.
+			Logos, icons and patent pending concept.
+			Embrion is a project of Brainside Studio with the collaboration of cantelymedia.<br><br>
+			<p class="text-center">
+				<a href="http://www.brainside.es" target="_blank"><img src="brainside.jpg" width="20%"></a>&nbsp;&nbsp;&nbsp;
+				<a href="http://www.cantelymedia.com" target="_blank"><img src="cantelymedia.jpg" width="22%"></a><br><br>
+				<a href="http://es.gigabyte.com/" target="_blank"><img src="gigabyte.png" width="50%"></a>
+			</p><br>
+		</div>
+		<div id="radar" >
+			<button class="close" id="cerrarRadar">&times;</button>
+			<span style="font-size:20px">Galery</span><br><br>
+
+<div id="myCarousel" class="carousel slide">
+
+  <div class="carousel-inner">
+    <div class="active item"><center>
+    <img src="img/01.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/02.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/03.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/04.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/05.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/06.jpg" width="260" class="img-polaroid"></center></div>   
+    <div class="item"><center>
+    <img src="img/07.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/08.jpg" width="260" class="img-polaroid"></center></div>
+    <div class="item"><center>
+    <img src="img/09.jpg" width="260" class="img-polaroid"></center></div>  
+    <div class="item"><center>
+    <img src="img/10.jpg" width="260" class="img-polaroid"></center></div>
+  </div>
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
+    <li data-target="#myCarousel" data-slide-to="5"></li>
+    <li data-target="#myCarousel" data-slide-to="6"></li>
+    <li data-target="#myCarousel" data-slide-to="7"></li>
+    <li data-target="#myCarousel" data-slide-to="8"></li>
+    <li data-target="#myCarousel" data-slide-to="9"></li>
+  </ol>
+</div>
+		</div>
+		<div id="container"></div>
+		<div id="menuInferior" style="font-size:8px;"> 
+        <a href="https://www.facebook.com/EmbrionTheGame" target="_blank">
+        <img src="facebook.png" onmouseover="this.src='facebook_hover.png';" onmouseout="this.src='facebook.png';"   ></a>
+        <a href="https://twitter.com/brainsidestudio" target="_blank">
+        <img src="twitter.png" onmouseover="this.src='twitter_hover.png';" onmouseout="this.src='twitter.png';" ></a>
+        <a href="http://www.youtube.com/channel/UCELtB1igT7xGtENrz1OMrsA" target="_blank">
+        <img src="youtube.png" onmouseover="this.src='youtube_hover.png';" onmouseout="this.src='youtube.png';"></a>
+		 </div>
+		<center><div id="cargando"></div></center>
+
+		<script>
+
+$(function() {
+
+			$("button#verSalirUniverso").click(function(){
+				var pagina = 'http://embrion.es';
+				document.location.href=pagina;
+			});
+			$("div#radar").hide();
+			$("div#controles").hide();
+			$("div#creditos").hide();
+
+			$("button#verControles").click(function(){
+				$( "div#controles" ).toggle("fold");
+			});
+
+			$("button#verCreditos").click(function(){
+				$("div#creditos").toggle("fold");
+			});	
+
+			$("button#verRadar").click(function(){
+				$("div#radar").toggle("fold");
+			});	
+
+			$("div#radar").draggable();
+			$("div#controles").draggable();
+			$("div#creditos").draggable();
+
+			$("button#cerrarControles").click(function(){
+				$("div#controles").hide();
+			});
+
+			$("button#cerrarCreditos").click(function(){
+				$("div#creditos").hide();
+			});
+
+			$("button#cerrarRadar").click(function(){
+				$("div#radar").hide();
+			});
+
+			$("button#cerrarMenuInferior").click(function(){
+				$("div#menuInferior").hide();
+			});
+
+});
+$(function() {
+
+
+			var clock = new THREE.Clock();
+			// scene size
+			var WIDTH = window.innerWidth;
+			var HEIGHT = window.innerHeight;
+
+			// camera
+			var VIEW_ANGLE = 45;
+			var ASPECT = WIDTH / HEIGHT;
+			var NEAR = 1;
+			var FAR = 500;
+
+			var camera, scane, renderer;
+
+			var cameraControls;
+
+			var verticalMirror, groundMirror;
+			var sphereGroup, smallSphere;
+
+			function init() {
+
+				// renderer
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( WIDTH, HEIGHT );
+
+				renderer.autoClear = true;
+				//renderer.setClearColor( 0x000000, 1 );
+
+				// scene
+				scene = new THREE.Scene();
+
+				// camera
+				camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+				camera.position.set( 0, 75, 160 );
+
+				cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
+				cameraControls.target.set( 0, 40, 0);
+				cameraControls.maxDistance = 400;
+				cameraControls.minDistance = 10;
+				cameraControls.update();
+
+				var container = document.getElementById( 'container' );
+				container.appendChild( renderer.domElement );
+
+			}
+
+			function fillScene() {
+				var ambient = new THREE.AmbientLight( 0x8db690 );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0xd5d5d5);
+				directionalLight.position.set( 0, -370, 10 ).normalize();
+				scene.add( directionalLight );
+
+				var directionalLight2 = new THREE.DirectionalLight( 0xd5d5d5 );
+				directionalLight2.position.set( 0, 570, -10 ).normalize();
+				scene.add( directionalLight2 );
+
+				crearGem();
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+
+			function render() {
+			
+				renderer.render(scene, camera);
+
+			}
+
+			function update() {
+				
+				requestAnimationFrame( update );
+				var timer = clock.getDelta();
+				cameraControls.update();
+				render();
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+			function crearGem(){
+						var gemMaterial = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('textures/difuso_02.jpg') });
+						loader = new THREE.JSONLoader();
+						loader.load('models/eva.js', function (gemGeometria) {
+							gem = new THREE.Mesh(gemGeometria, gemMaterial);
+							gem.scale.z = 0.9;
+							gem.scale.x = 0.9;
+							gem.scale.y = 0.9;
+							gem.position.x = 0; //derecha y izquierda
+							gem.position.y = 40; //alto y bajo
+							gem.position.z = 0; //profundidad
+							gem.rotation.x = 250;
+							gem.rotation.z = 600;
+							gem.id = "gem";
+							
+							scene.add(gem);
+						});
+			}
+
+			init();
+			fillScene();
+			update();
+});
+</script>
+
+	</body>
+</html>

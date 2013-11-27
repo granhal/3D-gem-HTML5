@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GEM</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<!-- css -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/ui.css" rel="stylesheet" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/three.min.js"></script>
+		<script src="js/Detector.js"></script>
+		<link rel="shortcut icon" href="favicon.ico" />
+	</head>
+
+	<body>
+
+		<div id="menuSuperior" class="text-right">
+
+			<img src="logo.png" width="30%" >
+			<div class="text-left">
+			<button class="btn btn-inverse" id="verRadar"> Prueba 2</button>
+			<button class="btn btn-inverse" id="verControles"> Prueba 1</button>
+		 	<button class="btn btn-inverse" id="verCreditos"> Créditos</button>
+		 	<button class="btn btn-inverse" id="verSalirUniverso">Embrion.es</button>
+		 	</div>
+		</div>
+		<div id="controles" style="font-size:9px;">
+			<button class="close" id="cerrarControles">&times;</button>
+			<span style="font-size:22px">Prueba 1</span><br> 
+
+		</div>
+		<div id="creditos">
+			<button class="close" id="cerrarCreditos" >&times;</button>
+			<span style="font-size:14px">Créditos</span><br><br><br>
+				<p class="text-center">
+					<a href="http://www.cantelymedia.com" target="_blank"><img src="cantelymedia.jpg" width="30%"></a>&nbsp;&nbsp;&nbsp;
+					<a href="http://www.brainside.es" target="_blank"><img src="brainside.jpg" width="20%"></a>
+				</p>
+		</div>
+		<div id="radar" >
+			<button class="close" id="cerrarRadar">&times;</button>
+			<span style="font-size:14px">Prueba 2</span>
+
+		</div>
+		<div id="container"></div>
+		<div id="menuInferior" class="text-right"> 
+		Prueba de texto
+		 </div>
+		<center><div id="cargando"></div></center>
+
+		<script>
+$(function() {
+			$("button#verSalirUniverso").click(function(){
+				var pagina = 'http://embrion.es';
+				document.location.href=pagina;
+			});
+			$("div#radar").hide();
+			$("div#controles").hide();
+			$("div#creditos").hide();
+
+			$("button#verControles").click(function(){
+				$( "div#controles" ).toggle("fold");
+			});
+
+			$("button#verCreditos").click(function(){
+				$("div#creditos").toggle("fold");
+			});	
+
+			$("button#verRadar").click(function(){
+				$("div#radar").toggle("fold");
+			});	
+
+			$("div#radar").draggable();
+			$("div#controles").draggable();
+			$("div#creditos").draggable();
+
+			$("button#cerrarControles").click(function(){
+				$("div#controles").hide();
+			});
+
+			$("button#cerrarCreditos").click(function(){
+				$("div#creditos").hide();
+			});
+
+			$("button#cerrarRadar").click(function(){
+				$("div#radar").hide();
+			});
+
+			$("button#cerrarMenuInferior").click(function(){
+				$("div#menuInferior").hide();
+			});
+
+});
+$(function() {
+			var SCREEN_WIDTH = window.innerWidth;
+			var SCREEN_HEIGHT = window.innerHeight;
+			var FLOOR = -250;
+
+			var container,stats;
+
+			var camera, scene;
+			var canvasRenderer, webglRenderer;
+
+			var mesh, zmesh, geometry;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var render_canvas = 1, render_gl = 1;
+			var has_gl = 0;
+
+			var bcanvas = document.getElementById( "rcanvas" );
+			var bwebgl = document.getElementById( "rwebgl" );
+
+			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+			init();
+			animate();
+
+			render_canvas = !has_gl;
+
+			function crearGem(){
+						var gemMaterial = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('textures/difuso_02.jpg') });
+						loader = new THREE.JSONLoader();
+						loader.load('models/eva.js', function (gemGeometria) {
+							gem = new THREE.Mesh(gemGeometria, gemMaterial);
+							gem.scale.z = 5.5;
+							gem.scale.x = 5.5;
+							gem.scale.y = 5.5;
+							gem.position.x = Math.floor(0); //derecha y izquierda
+							gem.position.y = Math.floor(10); //alto y bajo
+							gem.position.z = Math.floor(-30); //altura
+							gem.rotation.x = 250;
+							gem.rotation.z = 600;
+							gem.id = "gem";
+							
+							scene.add(gem);
+						});
+			}
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 100000 );
+				camera.position.z = 500;
+
+				scene = new THREE.Scene();
+				//scene.fog = new THREE.Fog( 0x000000, -25, 150 ); 
+				
+				// GROUND
+
+				crearGem();
+
+				// LIGHTS
+
+				var ambient = new THREE.AmbientLight( 0xcccccc );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0xcccccc );
+				directionalLight.position.set( 0, -70, 10 ).normalize();
+				scene.add( directionalLight );
+
+				// RENDERER
+
+				if ( render_gl ) {
+
+					try {
+
+						webglRenderer = new THREE.WebGLRenderer();
+						webglRenderer.setClearColor( 0x000000 );
+						webglRenderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+						webglRenderer.domElement.style.position = "relative";
+
+						container.appendChild( webglRenderer.domElement );
+
+						has_gl = 1;
+
+					}
+					catch (e) {
+					}
+
+				}
+
+				if ( render_canvas ) {
+
+					canvasRenderer = new THREE.CanvasRenderer();
+					canvasRenderer.setClearColor( 0xffffff );
+					canvasRenderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+					container.appendChild( canvasRenderer.domElement );
+
+				}
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				if ( webglRenderer ) webglRenderer.setSize( window.innerWidth, window.innerHeight );
+				if ( canvasRenderer ) canvasRenderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+
+			function onDocumentMouseMove(event) {
+
+				mouseX = ( event.clientX - windowHalfX );
+				mouseY = ( event.clientY - windowHalfY );
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+
+
+			}
+
+			function render() {
+
+				camera.position.x += ( mouseX - camera.position.x ) * .05;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+				camera.lookAt( scene.position );
+
+				webglRenderer.render( scene, camera );
+
+			}
+});
+
+
+		</script>
+		 <script type='text/javascript'>
+        $(document).ready(function(){
+
+        var alto=$(window).height();
+        $("div#cargando").append("<div id='pre-load-web'><div id='imagen-load'><img src='img/circles.gif' width='100px'  /></div><br />Cargando...</div>");
+
+        $("#pre-load-web").css({height:alto+"px"});
+
+        $("#imagen-load").css({"margin-top":(alto/2)-30+"px"});
+        }) 
+
+        $(window).load(function(){
+           $("#pre-load-web").fadeOut(1000,function(){ 
+               $(this).remove();
+           });        
+        })           
+        </script>
+	</body>
+</html>
